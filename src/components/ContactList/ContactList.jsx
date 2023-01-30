@@ -4,15 +4,13 @@ import css from './ContactList.module.css';
 export const ContactList = ({ contacts, onDeleteContact }) => {
   return (
     <ul className={css.list}>
-      {contacts.map(contact => (
-        <li className={css.listItem} key={contact.id}>
-          {contact.name + ': ' + contact.number}
-
+      {contacts.map(({ id, name, number }) => (
+        <li className={css.listItem} key={id}>
+          {name + ': ' + number}
           <button
             className={css.deleteButton}
             type="button"
-            name="delete"
-            onClick={() => onDeleteContact(contact.id)}
+            onClick={() => onDeleteContact(id)}
           >
             Delete
           </button>
@@ -23,6 +21,6 @@ export const ContactList = ({ contacts, onDeleteContact }) => {
 };
 
 ContactList.propTypes = {
-  onDeleteContact: PropTypes.func.isRequired,
   contacts: PropTypes.array.isRequired,
+  onDeleteContact: PropTypes.func.isRequired,
 };
